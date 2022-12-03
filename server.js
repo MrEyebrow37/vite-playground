@@ -3,6 +3,7 @@ const { application } = require('express')
 const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
+const path = require('path')
 
 const app = express()
 app.use(bodyParser.json())
@@ -25,4 +26,4 @@ if (process.env.environment === `production`) {
     })
 }
 
-app.listen(process.env.port)
+app.listen(process.env.PORT)
