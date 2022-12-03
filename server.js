@@ -1,3 +1,4 @@
+require('dotenv').config()
 const { application } = require('express')
 const express = require('express')
 const cors = require('cors')
@@ -12,4 +13,16 @@ app.post("/api/blob",(req,res) => {
     res.sendFile(`${__dirname}/csvs/amazon-us-sales.csv`)
 })
 
-app.listen(3000)
+app.get(`/api/getPerson`,(req,res) => {
+    res.send({person: "Caleb"})
+})
+
+if (process.env.environment === `production`) {
+    app.use(express.static(path.join(__dirname,`/client/build`)))
+
+    app.get('/*',(req,res) => {
+        res.sendFile(path.join(__dirname,`client`,`build`,`index.html`))
+    })
+}
+
+app.listen(process.env.port)
