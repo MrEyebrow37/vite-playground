@@ -1,6 +1,10 @@
 {
   "name": "vite-playground",
   "version": "1.0.0",
+  "engines": {
+    "node": "18.12.0",
+    "npm":  "8.19.2"
+  },
   "description": "",
   "main": "server.js",
   "scripts": {
