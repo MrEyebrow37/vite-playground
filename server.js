@@ -6,11 +6,15 @@ const bodyParser = require('body-parser')
 const path = require('path')
 
 const app = express()
+
+//middleware////////////////////////////////////////////////////////////////////////////////////
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors())
 
-app.post("/api/blob",(req,res) => {
+//routes////////////////////////////////////////////////////////////////////////////////////
+
+app.post(`/api/blob`,(req,res) => {
     res.sendFile(`${__dirname}/csvs/amazon-us-sales.csv`)
 })
 

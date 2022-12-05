@@ -1,20 +1,15 @@
 
 import { useEffect,useState } from 'react'
 import Papa from 'papaparse'
+
+import {BrowserRouter as Router,Routes,Route,} from 'react-router-dom'
 import './App.css'
+
+import Mobile from './components/mobile/mobile'
 
 function App() {
 
   let host = `http://localhost:4000`
-  // if (process.env.environment === `production`) {
-  //   port = `https://vite-playground.herokuapp.com/`
-  // }
-
-  useEffect(() => {
-    fetch(`${host}/api/getPerson`)
-    .then(res => res.json())
-    .then(res => console.log(res))
-  },[])
 
   const getPerson = () => {
     fetch(`${host}/api/getPerson`)
@@ -57,21 +52,32 @@ function App() {
 
   return (
     <div className="App">
-      {/* <div>
-        {amazonUsSales !== null ? amazonUsSales.map((row,index) => {
-          console.log("hi")
-          if (index === 1) {
-            return <div>
-              <p>hello</p>
-            </div>
-          }
-        }) : <div></div>}
-      </div> */}
+      <Router>
+        <Routes>
 
-      <div>
-        <p>hello</p>
-        <button onClick={(e) => {getPerson()}}>console.log person</button>
-      </div>
+          <Route path="/" element = {
+            <div>
+              <p>hello</p>
+              <button onClick={(e) => {getPerson()}}>console.log person</button>
+            </div>
+          }>
+          </Route>
+
+          <Route path="mobile" element = {<Mobile></Mobile>}>   
+          </Route>
+
+        </Routes>
+      </Router>
+        {/* <div>
+          {amazonUsSales !== null ? amazonUsSales.map((row,index) => {
+            console.log("hi")
+            if (index === 1) {
+              return <div>
+                <p>hello</p>
+              </div>
+            }
+          }) : <div></div>}
+        </div> */}
     </div>
   )
 }
